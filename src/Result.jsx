@@ -2,7 +2,7 @@ import React from "react";
 
 export default class Result extends React.Component {
   render() {
-    const result = this.props.result;
+    const result = this.props.result.resultat;
 
     if (!result) {
       return null;
