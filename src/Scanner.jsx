@@ -8,6 +8,7 @@ export default class Scanner extends React.Component {
   }
 
   componentDidMount() {
+    console.log("Nb coeurs: ", navigator.hardwareConcurrency);
     Quagga.init(
       {
         inputStream: {
@@ -19,25 +20,15 @@ export default class Scanner extends React.Component {
             facingMode: "environment" // or user
           }
         },
-        locator: {
-          patchSize: "medium",
-          halfSample: true
-        },
         numOfWorkers: navigator.hardwareConcurrency || 2,
         decoder: {
-          readers: [
-            {
-              format: "ean_reader",
-              config: {
-                supplements: ["ean_5_reader", "ean_2_reader"]
-              }
-            }
-          ]
-        },
-        locate: true
+          readers: ["ean_reader"],
+          multiple: true
+        }
       },
       function(err) {
         if (err) {
+          console.log("Erreur au init");
           return console.log(err);
         }
         Quagga.start();
