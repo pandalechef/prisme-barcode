@@ -11,20 +11,28 @@ export default class Scanner extends React.Component {
     Quagga.init(
       {
         inputStream: {
+          name: "Live",
           type: "LiveStream",
           constraints: {
             width: 640,
             height: 480,
-            facing: "environment" // or user
+            facingMode: "environment" // or user
           }
         },
         locator: {
           patchSize: "medium",
           halfSample: true
         },
-        numOfWorkers: 2,
+        numOfWorkers: navigator.hardwareConcurrency || 2,
         decoder: {
-          readers: ["ean_13"]
+          readers: [
+            {
+              format: "ean_reader",
+              config: {
+                supplements: ["ean_5_reader", "ean_2_reader"]
+              }
+            }
+          ]
         },
         locate: true
       },
@@ -43,6 +51,7 @@ export default class Scanner extends React.Component {
   }
 
   _onDetected(result) {
+    console.log("onDetected ", result);
     this.props.onDetected(result);
   }
 
