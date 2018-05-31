@@ -13,12 +13,11 @@ class App extends Component {
   }
 
   _scan() {
-    console.log(this.state.scanning);
     this.setState({ scanning: !this.state.scanning });
   }
 
   _onDetected(result) {
-    this.setState({ results: this.state.results.concat([result]) });
+    this.setState({ results: this.state.results.push(result) });
   }
 
   render() {

@@ -8,7 +8,6 @@ export default class Scanner extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Nb coeurs: ", navigator.hardwareConcurrency);
     Quagga.init(
       {
         inputStream: {
