@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   _onDetected(result) {
-    this.setState({ results: [...this.state.results, Object.values(result)] });
+    this.setState({ results: [...this.state.results, result[0]] });
   }
 
   render() {
