@@ -10,7 +10,6 @@ class App extends Component {
     this.state = { scanning: false, results: [] };
     this._scan = this._scan.bind(this);
     this._onDetected = this._onDetected.bind(this);
-    this.uniqEs6 = this.uniqEs6.bind(this);
   }
 
   _scan() {
