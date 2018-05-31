@@ -10,6 +10,7 @@ class App extends Component {
     this.state = { scanning: false, results: [] };
     this._scan = this._scan.bind(this);
     this._onDetected = this._onDetected.bind(this);
+    this.uniqEs6 = this.uniqEs6.bind(this);
   }
 
   _scan() {
@@ -17,7 +18,9 @@ class App extends Component {
   }
 
   _onDetected(result) {
-    this.setState({ results: uniqEs6([...this.state.results, result[0]]) });
+    this.setState({
+      results: this.uniqEs6([...this.state.results, result[0]])
+    });
   }
 
   uniqEs6 = arrArg => {
