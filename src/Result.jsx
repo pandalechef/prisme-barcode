@@ -2,15 +2,16 @@ import React from "react";
 
 export default class Result extends React.Component {
   render() {
-    const result = this.props.result.resultat;
+    const { resultat, nombre } = this.props.result;
 
-    if (!result) {
+    if (!resultat) {
       return null;
     }
     return (
-      <li>
-        {result.codeResult.code} [{result.codeResult.format}]
-      </li>
+      <tr>
+        <td>{resultat.codeResult.code}</td>
+        <td>{nombre}</td>
+      </tr>
     );
   }
 }
