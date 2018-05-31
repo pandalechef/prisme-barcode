@@ -19,8 +19,9 @@ class App extends Component {
 
   _onDetected(result) {
     const estNouveau =
-      results.filter(r => r.codeResult.code === result.codeResult.code)
-        .length === 0
+      this.state.results.filter(
+        r => r.codeResult.code === result.codeResult.code
+      ).length === 0
         ? true
         : false;
     if (estNouveau) {
@@ -28,7 +29,7 @@ class App extends Component {
         results: this.uniqEs6([...this.state.results, result[0]])
       });
     } else {
-      console.log("Element existe déjà: ", r.codeResult.code);
+      console.log("Element existe déjà: ", result.codeResult.code);
     }
   }
 
