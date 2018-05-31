@@ -30,11 +30,11 @@ class App extends Component {
       var nouveauResultats = [...this.state.results];
       nouveauResultats.forEach(r => {
         if (r.resultat.codeResult.code === result[0].codeResult.code) {
-          r.nombre = r.nombre + 1;
+          r.nombre += 1;
         }
       });
       this.setState({
-        results: [...this.state.results, nouveauResultats]
+        results: nouveauResultats
       });
     }
   }
