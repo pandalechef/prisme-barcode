@@ -24,7 +24,7 @@ export default class Scanner extends React.Component {
         },
         numOfWorkers: 2,
         decoder: {
-          readers: ["code_128_reader"]
+          readers: ["ean_13"]
         },
         locate: true
       },
