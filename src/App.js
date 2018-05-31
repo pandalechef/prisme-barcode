@@ -17,18 +17,25 @@ class App extends Component {
   }
 
   _onDetected(result) {
-    const estNouveau =
-      this.state.results.filter(
-        r => r.codeResult.code === result[0].codeResult.code
-      ).length === 0
-        ? true
-        : false;
+    const estNouveau = this.state.results.filter(
+      r => r.resultat.codeResult.code === result[0].codeResult.code
+    ).length === 0
+      ? true
+      : false;
     if (estNouveau) {
       this.setState({
-        results: [...this.state.results, result[0]]
+        results: [...this.state.results, { resultat: result[0], nombre: 1 }]
       });
     } else {
-      console.log("Element existe déjà: ", result[0].codeResult.code);
+      var nouveauResultats = [...this.state.results];
+      nouveauResultats.forEach(r => {
+        if (r.resultat.codeResult.code === result[0].codeResult.code) {
+          r.nombre = r.nombre + 1;
+        }
+      });
+      this.setState({
+        results: [...this.state.results, nouveauResultats]
+      });
     }
   }
 
@@ -45,13 +52,13 @@ class App extends Component {
             {this.state.scanning ? "Stop" : "Start"}
           </button>
           <ul className="results">
-            {this.state.results.map(result => (
-              <Result key={result.codeResult.code} result={result} />
+            {this.state.results.map(r => (
+              <Result key={r.resultat.codeResult.code} result={r} />
             ))}
           </ul>
-          {this.state.scanning ? (
-            <Scanner onDetected={this._onDetected} />
-          ) : null}
+          {this.state.scanning
+            ? <Scanner onDetected={this._onDetected} />
+            : null}
         </div>
       </div>
     );
