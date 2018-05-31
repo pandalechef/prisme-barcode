@@ -17,8 +17,14 @@ class App extends Component {
   }
 
   _onDetected(result) {
-    this.setState({ results: [new Set(...this.state.results, result[0])] });
+    this.setState({ results: uniqEs6([...this.state.results, result[0]]) });
   }
+
+  uniqEs6 = arrArg => {
+    return arrArg.filter((elem, pos, arr) => {
+      return arr.indexOf(elem) == pos;
+    });
+  };
 
   render() {
     console.log("results: ", this.state.results);
