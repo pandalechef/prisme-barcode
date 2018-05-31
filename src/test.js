@@ -1,6 +1,3 @@
-var object = {
-  "0": {toto: 3}
-}
-var result = [];
-result = [...result, object[0]];
-console.log(result[0].toto);
+var object = [1,2,3,4,4,5,6,7,8,9,10]
+result = new Set(object);
+console.log(result);
