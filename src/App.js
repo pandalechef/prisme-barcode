@@ -18,16 +18,19 @@ class App extends Component {
   }
 
   _onDetected(result) {
-    this.setState({
-      results: this.uniqEs6([...this.state.results, result[0]])
-    });
+    const estNouveau =
+      results.filter(r => r.codeResult.code === result.codeResult.code)
+        .length === 0
+        ? true
+        : false;
+    if (estNouveau) {
+      this.setState({
+        results: this.uniqEs6([...this.state.results, result[0]])
+      });
+    } else {
+      console.log("Element existe déjà: ", r.codeResult.code);
+    }
   }
-
-  uniqEs6 = arrArg => {
-    return arrArg.filter((elem, pos, arr) => {
-      return arr.indexOf(elem) == pos;
-    });
-  };
 
   render() {
     console.log("results: ", this.state.results);
